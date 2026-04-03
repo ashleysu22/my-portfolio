@@ -14,11 +14,11 @@ const Portfolio = () => {
 
   const projects = [
     { title: "App", desc: "Full-stack E-commerce", back: "Details: Stripe, Redux, JWT" },
-    { title: "Dashboard", desc: "Real-time analytics", back: "Details: Socket.io, Redis" },
-    { title: "Mobile App", desc: "Fitness Tracker", back: "Details: Expo, Reanimated" },
+    { title: "Laravel POS", desc: "Real-time analytics", back: "Details: Socket.io, Redis" },
+    { title: "Mobile App", desc: "掷筊 & 经期追踪 Web App", back: "Details: Vue 3, Vite, Tailwind CSS", link: "https://ashleysu22.github.io/my-app"},
     { title: "App", desc: "Full-stack E-commerce", back: "Details: Stripe, Redux, JWT" },
-    { title: "Dashboard", desc: "Real-time analytics", back: "Details: Socket.io, Redis" },
-    { title: "Mobile App", desc: "Fitness Tracker", back: "Details: Expo, Reanimated" },
+    { title: "Laravel POS", desc: "Real-time analytics", back: "Details: Socket.io, Redis" },
+    { title: "Mobile App", desc: "掷筊 & 经期追踪 Web App", back: "Details: Vue 3, Vite, Tailwind CSS", link: "https://ashleysu22.github.io/my-app"},
   ];
 
   return (
@@ -132,15 +132,26 @@ const Portfolio = () => {
         <div className="flex w-fit animate-infinite-scroll hover:[animation-play-state:paused]">
           {projects.map((project, index) => (
             <div key={index} className="flex-shrink-0 px-4 group [perspective:1000px]">
-              <div className="relative w-72 h-44 sm:w-80 sm:h-48 transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                <div className="absolute inset-0 bg-[#1e293b] p-8 rounded-2xl border border-gray-800 flex flex-col justify-center [backface-visibility:hidden]">
-                  <h4 className="text-xl font-bold mb-2">{project.title}</h4>
-                  <p className="text-gray-400 text-sm">{project.desc}</p>
+              {/* Wrap the entire flippable card in an anchor tag */}
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="block cursor-pointer"
+              >
+                <div className="relative w-72 h-44 sm:w-80 sm:h-48 transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                  {/* Front Side */}
+                  <div className="absolute inset-0 bg-[#1e293b] p-8 rounded-2xl border border-gray-800 flex flex-col justify-center [backface-visibility:hidden]">
+                    <h4 className="text-xl font-bold mb-2">{project.title}</h4>
+                    <p className="text-gray-400 text-sm">{project.desc}</p>
+                  </div>
+                  {/* Back Side */}
+                  <div className="absolute inset-0 bg-[#dbe2ef] p-8 rounded-2xl flex flex-col justify-center items-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                    <p className="text-[#454B61] text-sm font-medium mb-2">{project.back}</p>
+                    <span className="text-[#d63384] text-xs font-bold underline">Click to Launch App</span>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-[#dbe2ef] bg-600 p-8 rounded-2xl flex flex-col justify-center items-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                  <p className="text-[#454B61] text-sm font-medium">{project.back}</p>
-                </div>
-              </div>
+              </a>
             </div>
           ))}
         </div>
